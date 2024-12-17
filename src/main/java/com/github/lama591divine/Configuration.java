@@ -5,6 +5,7 @@ import org.apache.commons.cli.*;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.List;
 
 public class Configuration {
 
@@ -13,7 +14,7 @@ public class Configuration {
     private final boolean append;
     private final boolean shortStats;
     private final boolean fullStats;
-    private final java.util.List<String> inputFiles;
+    private final List<String> inputFiles;
 
     public Configuration(String[] args) throws ParseException, IllegalArgumentException {
         Options options = buildOptions();
@@ -46,10 +47,12 @@ public class Configuration {
         if (!Files.exists(outputPath)) {
             try {
                 Files.createDirectories(outputPath);
-            } catch (Exception e) {
+            }
+            catch (Exception e) {
                 throw new IllegalArgumentException("Failed to create the output directory: " + outputDir);
             }
-        } else if (!Files.isDirectory(outputPath)) {
+        }
+        else if (!Files.isDirectory(outputPath)) {
             throw new IllegalArgumentException("The specified output path is not a directory: " + outputDir);
         }
     }

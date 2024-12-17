@@ -17,6 +17,8 @@ public class FileWriterManager implements AutoCloseable {
     private boolean hasFloats = false;
     private boolean hasStrings = false;
 
+    private final boolean isAppend;
+
     public FileWriterManager(Path outputPath, String prefix, boolean append) throws IOException {
         String integersFileName = prefix + "integers.txt";
         String floatsFileName = prefix + "floats.txt";
@@ -25,6 +27,8 @@ public class FileWriterManager implements AutoCloseable {
         this.integersPath = outputPath.resolve(integersFileName);
         this.floatsPath = outputPath.resolve(floatsFileName);
         this.stringsPath = outputPath.resolve(stringsFileName);
+
+        isAppend = append;
 
         OpenOption[] options = append ?
                 new OpenOption[]{StandardOpenOption.CREATE, StandardOpenOption.APPEND} :
@@ -59,13 +63,13 @@ public class FileWriterManager implements AutoCloseable {
         floatsWriter.close();
         stringsWriter.close();
 
-        if (!hasIntegers) {
+        if (!hasIntegers && !isAppend) {
             Files.deleteIfExists(integersPath);
         }
-        if (!hasFloats) {
+        if (!hasFloats && !isAppend) {
             Files.deleteIfExists(floatsPath);
         }
-        if (!hasStrings) {
+        if (!hasStrings && !isAppend) {
             Files.deleteIfExists(stringsPath);
         }
     }

@@ -23,12 +23,17 @@ public class Main {
                 processInputFiles(config, classifier, writerManager, stats);
                 stats.printStatistics(config.isShortStats(), config.isFullStats(),
                         writerManager.hasIntegers(), writerManager.hasFloats(), writerManager.hasStrings());
-            } catch (IOException e) {
+            }
+            catch (IOException e) {
                 System.err.println("Error writing output files: " + e.getMessage());
             }
 
-        } catch (ParseException | IllegalArgumentException e) {
-            System.err.println("Error: " + e.getMessage());
+        }
+        catch (ParseException e) {
+            System.err.println("Error parsing configuration: " + e.getMessage());
+        }
+        catch (IllegalArgumentException e) {
+            System.err.println("Invalid argument: " + e.getMessage());
         }
     }
 
@@ -52,7 +57,6 @@ public class Main {
                     if (line.isEmpty()) {
                         continue;
                     }
-
                     switch (classifier.classify(line)) {
                         case INTEGER:
                             stats.addInteger(classifier.parseInteger(line));

@@ -71,7 +71,8 @@ public class Statistics {
             if (shortStats) {
                 System.out.println("Statistics for integers:");
                 System.out.println("Count: " + intCount + "\n");
-            } else if (fullStats) {
+            }
+            else if (fullStats) {
                 System.out.println("Statistics for integers:");
                 System.out.println("Count: " + intCount);
                 System.out.println("Minimum value: " + minInt);
@@ -85,7 +86,8 @@ public class Statistics {
             if (shortStats) {
                 System.out.println("Statistics for floating-point numbers:");
                 System.out.println("Count: " + floatCount + "\n");
-            } else if (fullStats) {
+            }
+            else if (fullStats) {
                 System.out.println("Statistics for floating-point numbers:");
                 System.out.println("Count: " + floatCount);
                 System.out.println("Minimum value: " + minFloat);
@@ -99,7 +101,8 @@ public class Statistics {
             if (shortStats) {
                 System.out.println("Statistics for strings:");
                 System.out.println("Count: " + stringCount + "\n");
-            } else if (fullStats) {
+            }
+            else if (fullStats) {
                 System.out.println("Statistics for strings:");
                 System.out.println("Count: " + stringCount);
                 System.out.println("Minimum string length: " + minStringLength);
